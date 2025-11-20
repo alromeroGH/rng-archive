@@ -1,0 +1,82 @@
+ <div class="container">
+    <h1>Registro</h1>
+    
+    <hr>
+
+    <form class="form">
+        <mat-form-field class="full-width">
+            <mat-label class="input">Usuario</mat-label>
+            <input type="text" matInput [formControl]="userFormControl">
+
+            <mat-error *ngIf="userFormControl.hasError('required')">
+                El usuario es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="userFormControl.hasError('minlength')">
+                El usuario debe tener mínimo 4 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+    
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Ingresar un mail válido
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+            El email es <strong>requerido</strong>
+        </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Constraseña</mat-label>
+            <input type="password" matInput [formControl]="passwordFormControl">
+
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+            La constraseña es <strong>requerida</strong>
+        </mat-error>
+
+        <mat-error *ngIf="passwordFormControl.hasError('minlength')">
+            La constraseña debe tener mínimo 8 caracteres
+        </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Repetir constraseña</mat-label>
+            <input type="password" matInput [formControl]="rePasswordFormControl">
+
+            <mat-error *ngIf="rePasswordFormControl.hasError('required')">
+                La constraseña es <strong>requerida</strong>
+            </mat-error>
+
+            <mat-error *ngIf="rePasswordFormControl.hasError('minlength')">
+                La constraseña debe tener mínimo 8 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">UID</mat-label>
+            <input type="text" matInput [formControl]="uidFormControl">
+
+            <mat-error *ngIf="uidFormControl.hasError('required')">
+                El UID es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="uidFormControl.hasError('maxlength')">
+                El UID no puede tener más de 9 caracteres
+            </mat-error>
+
+            <mat-error *ngIf="uidFormControl.hasError('pattern')">
+                El UID solo contiene números
+            </mat-error>
+        </mat-form-field>
+
+        <div>
+            <button (click)="register()">Registrarse</button>
+            <br><br>
+            <a routerLink="/login">Volver</a>
+        </div>
+
+    </form>
+</div>

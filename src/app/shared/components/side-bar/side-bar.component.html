@@ -1,0 +1,103 @@
+<nav>
+    <div class="nav-item" (click)="redirectToHome()" role="button" tabindex="0">
+        <img class="nav-icon" src="../../../../assets/images/casa.png" alt="home">
+        <span class="nav-label">Home</span>
+    </div>
+
+    <mat-accordion displayMode="flat" class="accordion-container">
+        <mat-expansion-panel class="panel-container" (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2>Artefactos</h2>
+                </mat-panel-title>
+      
+            </mat-expansion-panel-header>
+                <div class="nav-item" (click)="redirectoToAddArtifact()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/corona.png" alt="home">
+                    <span class="nav-label">Insertar artefacto</span>
+                </div>
+
+                <br>
+
+                <div class="nav-item" (click)="redirectoToArtifactStatistics()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/grafico.png" alt="home">
+                    <span class="nav-label">Estadísticas artefactos</span>
+                </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion class="accordion-container">
+        <mat-expansion-panel class="panel-container" (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2>gachapon</h2>
+                </mat-panel-title>
+      
+            </mat-expansion-panel-header>
+                <div class="nav-item" (click)="redirectoToAddPull()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/casino.png" alt="home">
+                    <span class="nav-label">Insertar tiradas</span>
+                </div>
+
+                <br>
+
+                <div class="nav-item" (click)="redirectoToPullStatistics()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/estadisticas.png" alt="home">
+                    <span class="nav-label">Estadísticas gachapon</span>
+                </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="nav-item" (click)="redirectoToSimulator()" role="button" tabindex="0">
+        <img class="nav-icon" src="../../../../assets/images/simulacion.png" alt="home">
+        <span class="nav-label">Simulador</span>
+    </div>
+
+    <div *ngIf="isAdmin">
+    <mat-accordion class="accordion-container">
+        <mat-expansion-panel class="panel-container" (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <h2>Administrador</h2>
+                </mat-panel-title>
+      
+            </mat-expansion-panel-header>
+                <div class="nav-item" (click)="redirectToManageNews()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/periodico.png" alt="home">
+                    <span class="nav-label">Gestionar noticias</span>
+                </div>
+
+                <br>
+
+                <div class="nav-item" (click)="redirectToManageArtifact()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/agregar-paquete.png" alt="home">
+                    <span class="nav-label">Agregar set de artefactos</span>
+                </div>
+
+                <br>
+
+                <div class="nav-item" (click)="redirectToManageUnit()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/agregar-usuario.png" alt="home">
+                    <span class="nav-label">Agregar personaje o arma</span>
+                </div>
+
+                <br>
+
+                <div class="nav-item" (click)="redirectToManageWeaponBanner()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/espadas.png" alt="home">
+                    <span class="nav-label">Agregar banner de arma</span>
+                </div>
+
+                <br>
+
+                <div class="nav-item" (click)="redirectToManageCharacterBanner()" role="button" tabindex="0">
+                    <img class="nav-icon" src="../../../../assets/images/caballero.png" alt="home">
+                    <span class="nav-label">Agregar banner de personaje</span>
+                </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    </div>
+</nav>

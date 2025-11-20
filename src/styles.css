@@ -1,1 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    /* main colors */
+    --color-primary: #464C88;
+    --color-primary-secondary-color: #8B5CF6;
+    --color-primary-main-background: #EAE7DC;
+    --color-primary-user-background: #D9D9D9;
+    --color-primary-sections: #FFFCF6;
+    --color-primary-graphic: #FFD700;
+
+    /* input colors */
+    --color-input: #CBD5E1;
+    --color-input-error: #EF4444;
+    --color-input-placeholder: #94A3B8;
+
+    /* button colors */
+    --color-button-hover: #32386A;
+
+    /* text colors */
+    --color-text: #334155;
+    --color-text-title: #233357;
+    --color-text-white: #FFFFFF;
+    --color-text-black: #000000;
+
+    /* news colors */
+    --color-news-border: #CBD5E1;
+    --color-news-event-text: #0284C7;
+    --color-news-event-background: #E0F2FE;
+    --color-news-banner-text: #CA8A04;
+    --color-news-banner-background: #FEF9C3;
+    --color-news-code-text: #BE185D;
+    --color-news-code-background: #FCE7F3;
+
+    /* rarity-colors */
+    --color-rarity-rare: #007FFF;
+    --color-rarity-epic: #A059D2;
+    --color-rarity-legendary: #FF9900;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-primary-main-background);
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--color-text-title);
+}
+
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--color-text-title);
+}
+
+p, a, div {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: var(--color-text);
+}
+
+button {
+    width: 120px;
+    height: 48px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--color-primary);
+    cursor: pointer;
+    color: var(--color-text-white);
+    background-color: var(--color-primary);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: var(--color-button-hover);
+    border: 1px solid var(--color-button-hover);
+}
+
+a {
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary-secondary-color);
+}

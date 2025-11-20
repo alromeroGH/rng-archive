@@ -1,0 +1,45 @@
+
+
+.accordion-container {
+  display: flex;
+  justify-content: center;
+}
+
+.panel-container {
+  width: 300px;
+  background-color: var(--color-primary-sections);
+  box-shadow: none !important; 
+}
+
+.navbar-img {
+  height: 25px;
+  width: 25px;
+  padding-top: 50px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    
+    padding: 10px 16px;
+    padding-top: 35px;
+    
+    cursor: pointer;
+    border-radius: 8px; 
+   
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.nav-label {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--color-text-title);
+}

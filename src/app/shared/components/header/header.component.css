@@ -1,0 +1,57 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 70px;
+    background-color: var(--color-primary-sections);
+    color: white;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.logo-section {
+    cursor: pointer;
+}
+
+.logo-section h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.actions, .user-info, .profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-link {
+    width: 120px;
+    height: 40px;
+}
+
+.username {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.role-badge {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.role-badge.admin {
+    background-color: var(--color-rarity-legendary);
+    color: var(--color-text);
+}
+
+.profile {
+    height: 48px;
+    height: 48px;
+}

@@ -1,0 +1,21 @@
+<header class="app-header">
+    <h1 class="logo-section">RNG Archive</h1>
+
+    <nav class="nav-section" [ngSwitch]="rol">
+        <div class="actions" *ngSwitchCase="'guess'">
+            <button (click)="redirectToLogin()">Iniciar sesión</button>
+            <button (click)="redirectToRegister()">Registrarse</button>
+        </div>
+
+        <div class="user-info" *ngSwitchCase="'admin'">
+            <span class="role-badge admin">ADMIN</span>
+            <button class="btn-link" (click)="logout()">Cerrar sesión</button>
+            <a (click)="redirectToProfile()"><img class="profile" src="../../../../assets/images/avatar.png" alt="profile"></a>
+        </div>
+
+        <div class="user-info" *ngSwitchCase="'user'">
+            <button class="btn-link" (click)="logout()">Cerrar sesión</button>
+            <a (click)="redirectToProfile()"><img class="profile" src="../../../../assets/images/avatar.png" alt="profile"></a>
+        </div>
+    </nav>
+</header>

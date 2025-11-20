@@ -1,0 +1,30 @@
+.main-container {
+    width: 100%;
+    height: 100vh;
+    margin-top: 32px;
+    background-color: var(--color-primary-main-background);
+}
+
+.app-sidebar {
+    display: flex;
+    text-align: center;
+    width: 340px;
+    background-color: var(--color-primary-sections);
+    margin: 0px 30px 30px 30px;
+    border-radius: 50px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary-main-background);
+}
+
+:host {
+    display: block;
+    margin: 0;
+    padding: 0;
+}

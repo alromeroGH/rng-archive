@@ -1,0 +1,10 @@
+footer {
+    background-color: var(--color-text);
+    padding: 2rem;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    color: var(--color-text-white);
+}
