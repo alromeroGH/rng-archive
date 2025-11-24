@@ -67,6 +67,8 @@ p, a, div {
     color: var(--color-text);
 }
 
+/* buttons and links styles */
+
 button {
     width: 120px;
     height: 48px;
@@ -94,4 +96,126 @@ a {
 
 a:hover {
   color: var(--color-primary-secondary-color);
+}
+
+/* line style */
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--color-primary-secondary-color);
+  margin: 15px 0 25px 0;
+}
+
+/* Forms styles */
+
+.container {
+  max-width: 400px;
+  width: 90%;
+  padding: 30px 40px;
+  background-color: var(--color-primary-sections);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input {
+  color: var(--color-input-placeholder);
+}
+
+mat-error {
+  font-size: 0.8rem;
+  color: var(--color-input-error);
+}
+
+/* Table styles */
+.table-container {
+  max-width: 1000px;
+  width: 90%;
+  padding: 30px 40px;
+  margin-bottom: 100px;
+  background-color: var(--color-primary-sections);
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.mat-mdc-table {
+  width: 100%;
+  max-height: 500px;
+  padding-bottom: 25px;
+  overflow: auto;
+}
+
+.mat-column-name {
+  height: 100px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.filter {
+  font-size: 14px;
+  width: 100%;
+}
+
+.img-table {
+  width: 30px;
+  height: 30px;
+  padding: 20px 0px 20px 0px;
+  cursor: pointer;
+}
+
+/* Image input styles */
+.image-upload-container {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.upload-label {
+  background-color: var(--color-primary-secondary-color);
+  color: var(--color-text-white);
+  padding: 10px 15px;
+  margin-left: 55px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.upload-label:hover {
+  background-color: var(--color-rarity-epic);
+}
+
+.image-preview {
+  margin-top: 15px;
+  margin-left: 120px;
+  border: 1px solid var(--color-input);
+  border-radius: 8px;
+  padding: 5px;
+  max-width: 150px;
+}
+
+.preview-img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
 }

@@ -9,7 +9,7 @@ import { SideBarComponent } from './shared/components/side-bar/side-bar.componen
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptor/token.interceptor';
@@ -28,7 +28,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     SideBarComponent,
     FooterComponent,
     BrowserAnimationsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule
   ],
   providers: [
     provideHttpClient(),

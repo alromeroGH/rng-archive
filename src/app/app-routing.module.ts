@@ -14,6 +14,11 @@ import { ManageArtifactComponent } from './features/admin/components/manage-arti
 import { ManageUnitComponent } from './features/admin/components/manage-unit/manage-unit.component';
 import { ManageWeaponBannerComponent } from './features/admin/components/manage-weapon-banner/manage-weapon-banner.component';
 import { ManageCharacterBannerComponent } from './features/admin/components/manage-character-banner/manage-character-banner.component';
+import { TableNewsComponent } from './features/admin/components/manage-news/table-news/table-news.component';
+import { TableArtifactsComponent } from './features/admin/components/manage-artifact/table-artifact/table-artifact.component';
+import { TableUnitComponent } from './features/admin/components/manage-unit/table-unit/table-unit.component';
+import { TableWeaponBannerComponent } from './features/admin/components/manage-weapon-banner/table-weapon-banner/table-weapon-banner.component';
+import { TableCharacterBannerComponent } from './features/admin/components/manage-character-banner/table-character-banner/table-character-banner.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -37,7 +42,13 @@ const routes: Routes = [
   {path: 'manage-artifact', component: ManageArtifactComponent},
   {path: 'manage-unit', component: ManageUnitComponent},
   {path: 'manage-weapon-banner', component: ManageWeaponBannerComponent},
-  {path: 'manage-character-banner', component: ManageCharacterBannerComponent}
+  {path: 'manage-character-banner', component: ManageCharacterBannerComponent},
+
+  {path: 'table-news', component: TableNewsComponent},
+  {path: 'table-artifact', component: TableArtifactsComponent},
+  {path: 'table-unit', component: TableUnitComponent},
+  {path: 'table-weapon-banner', component: TableWeaponBannerComponent},
+  {path: 'table-character-banner', component: TableCharacterBannerComponent}
   
 ];
 

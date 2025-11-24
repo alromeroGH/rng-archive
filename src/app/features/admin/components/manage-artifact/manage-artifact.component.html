@@ -1,1 +1,121 @@
-<p>manage-artifact works!</p>
+<div class="container">
+    <div *ngIf="updateButton">
+        <h1>Editar set de artefactos</h1>
+    </div>
+
+    <div *ngIf="!updateButton">
+        <h1>Set de artefactos</h1>
+    </div>
+
+    <hr>
+
+    <form class="form">
+        <mat-form-field class="full-width">
+            <mat-label class="input">Nombre del set</mat-label>
+            <input matInput [formControl]="nameSetFormControl">
+    
+            <mat-error *ngIf="nameSetFormControl.hasError('required')">
+                El nombre del set es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="nameSetFormControl.hasError('minlength')">
+                El nombre del set debe tener mínimo 4 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Nombre de la flor</mat-label>
+            <input matInput [formControl]="flowerFormControl">
+    
+            <mat-error *ngIf="flowerFormControl.hasError('required')">
+                El nombre de la flor es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="flowerFormControl.hasError('minlength')">
+                El nombre de la flor debe tener mínimo 4 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Nombre de la pluma</mat-label>
+            <input matInput [formControl]="featherFormControl">
+    
+            <mat-error *ngIf="featherFormControl.hasError('required')">
+                El nombre de la pluma es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="featherFormControl.hasError('minlength')">
+                El nombre de la pluma debe tener mínimo 4 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Nombre del reloj</mat-label>
+            <input matInput [formControl]="sandsFormControl">
+    
+            <mat-error *ngIf="sandsFormControl.hasError('required')">
+                El nombre del reloj es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="sandsFormControl.hasError('minlength')">
+                El nombre del reloj debe tener mínimo 4 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Nombre del caliz</mat-label>
+            <input matInput [formControl]="gobletFormControl">
+    
+            <mat-error *ngIf="gobletFormControl.hasError('required')">
+                El nombre del caliz es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="gobletFormControl.hasError('minlength')">
+                El nombre del caliz debe tener mínimo 4 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Nombre del casco</mat-label>
+            <input matInput [formControl]="circletFormControl">
+    
+            <mat-error *ngIf="circletFormControl.hasError('required')">
+                El nombre del casco es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="circletFormControl.hasError('minlength')">
+                El nombre del casco debe tener mínimo 4 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <div class="image-upload-container">
+            <label for="set-image" class="upload-label">
+                Seleccionar Imagen del Set (.png)
+            </label>
+            <input 
+                type="file" 
+                id="set-image" 
+                (change)="onFileSelected($event)" 
+                accept="image/png" 
+                style="display: none;">
+
+            <div *ngIf="imageBase64" class="image-preview">
+                <img [src]="imageBase64" alt="Previsualización del Set" class="preview-img">
+            </div>
+        </div>
+
+        <div class="button-container">
+            <div *ngIf="updateButton">
+                <button (click)="updateArtifactSet()">Editar</button>
+            </div>
+
+            <div *ngIf="!updateButton">
+                <button (click)="addArtifactSet()">Agregar</button>
+            </div>
+
+            <button (click)="cancel()">Cancelar</button>
+        </div>
+        <br><br>
+        <a (click)="redirectToTableArtifacts()">Historial de set de artefactos</a>
+    </form>
+</div>
