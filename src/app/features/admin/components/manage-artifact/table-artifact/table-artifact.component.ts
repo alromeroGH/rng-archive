@@ -30,6 +30,7 @@ export class TableArtifactsComponent {
   listArtifactSets(): void {
     this.artifact.listArtifactSets().subscribe({
       next: (response) => {
+        this.ARTIFACT_DATA = [];
         for (let i = 0; i < response.length; i++) {
           const rawItem = response[i];
           this.ARTIFACT_DATA.push({

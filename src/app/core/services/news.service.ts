@@ -19,7 +19,7 @@ export class NewsService {
   }
 
   listNews(): Observable<any> {
-    return this.http.get(`${this.newsUrl}`);
+    return this.http.get(this.newsUrl);
   }
 
   updateNews(body: News, id: number): Observable<any> {

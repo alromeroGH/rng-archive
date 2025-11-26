@@ -1,1 +1,81 @@
-<p>table-weapon-banner works!</p>
+<div class="table-container">
+    <h1>Banners de armas agregados</h1>
+
+    <hr>
+
+    <mat-form-field class="filter">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+
+    <mat-table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="weaponBannerName" class="mat-column-type">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.weaponBannerName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bannerPhase" class="mat-column-type">
+            <th mat-header-cell *matHeaderCellDef> Fase </th>
+            <td mat-cell *matCellDef="let element"> {{element.bannerPhase}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bannerVersion" class="mat-column-type">
+            <th mat-header-cell *matHeaderCellDef> Versión </th>
+            <td mat-cell *matCellDef="let element"> {{element.bannerVersion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bannerStartDate" class="mat-column-type">
+            <th mat-header-cell *matHeaderCellDef> Fecha de inicio </th>
+            <td mat-cell *matCellDef="let element"> {{element.bannerStartDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fiveStars">
+            <th mat-header-cell *matHeaderCellDef> 5 estrellas </th>
+            <td mat-cell *matCellDef="let element"> 
+                - {{element.fiveStars[0].unitName}} 
+                <br>
+                - {{element.fiveStars[1].unitName}} 
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fourStars">
+            <th mat-header-cell *matHeaderCellDef> 4 estrellas </th>
+            <td mat-cell *matCellDef="let element"> 
+                - {{element.fourStars[0].unitName}} 
+                <br>
+                - {{element.fourStars[1].unitName}} 
+                <br>
+                - {{element.fourStars[2].unitName}}
+                <br>
+                - {{element.fourStars[3].unitName}}
+                <br>
+                - {{element.fourStars[4].unitName}}
+             </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bannerImage">
+            <th mat-header-cell *matHeaderCellDef> Imagen </th>
+            <td mat-cell *matCellDef="let element"> 
+                <img class="preview-img" src="{{element.bannerImage}}" alt="unit image">
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modify">
+            <th mat-header-cell *matHeaderCellDef> Modificar </th>
+            <td mat-cell *matCellDef="let element"> <img (click)="updateWeaponBanner(element)" class="img-table" src="../../../../../assets/images/editar.png" alt="edit"> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element"> <img (click)="deleteWeaponBanner(element.id)" class="img-table" src="../../../../../assets/images/basura.png" alt="delete"> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </mat-table>
+
+    <br><br>
+    
+    <a (click)="redirectToManageWeaponBanner()">Volver</a>
+</div>
