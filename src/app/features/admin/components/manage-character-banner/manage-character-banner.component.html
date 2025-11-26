@@ -1,1 +1,141 @@
-<p>manage-character-banner works!</p>
+<div class="container">
+    <div *ngIf="updateButton">
+        <h1>Editar banner de personajes</h1>
+    </div>
+
+    <div *ngIf="!updateButton">
+        <h1>Banner de personajes</h1>
+    </div>
+
+    <hr>
+
+    <form class="form">
+        <mat-form-field class="full-width">
+            <mat-label class="input">Nombre</mat-label>
+            <input matInput [formControl]="bannerNameFormControl">
+    
+        <mat-error *ngIf="bannerNameFormControl.hasError('required')">
+            El nombre es <strong>requerido</strong>
+        </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Versión</mat-label>
+            <input matInput [formControl]="bannerVersionFormControl" placeholder="Ej: 5.2">
+    
+        <mat-error *ngIf="bannerVersionFormControl.hasError('required')">
+            La versión es <strong>requerida</strong>
+        </mat-error>
+
+        <mat-error *ngIf="bannerVersionFormControl.hasError('pattern')">
+            La versión debe ser formato x.x
+        </mat-error>
+        </mat-form-field>
+
+       <mat-form-field>
+            <mat-label>Fase</mat-label>
+                <mat-select [formControl]="bannerPhaseFormControl" [compareWith]="comparePhaseBanner" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of phase" [value]="type">
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bannerPhaseFormControl.hasError('required')">
+                    La fase es <strong>requerids</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Fecha de inicio</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="bannerStartDateFormControl">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+    
+        <mat-error *ngIf="bannerStartDateFormControl.hasError('required')">
+            La fecha de inicio es <strong>requerida</strong>
+        </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>5 estrellas</mat-label>
+                <mat-select [formControl]="bannerFiveStarFormControl" [compareWith]="compareCharacterBanner" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of fiveStars" [value]="type">
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bannerFiveStarFormControl.hasError('required')">
+                    El personaje 5 estrellas es <strong>requerido</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>4 estrellas(1)</mat-label>
+                <mat-select [formControl]="bannerFourStarOneFormControl" [compareWith]="compareCharacterBanner" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of fourStars" [value]="type">
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bannerFourStarOneFormControl.hasError('required')">
+                    El personaje 4 estrellas es <strong>requerido</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>4 estrellas(2)</mat-label>
+                <mat-select [formControl]="bannerFourStarTwoFormControl" [compareWith]="compareCharacterBanner" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of fourStars" [value]="type">
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bannerFourStarTwoFormControl.hasError('required')">
+                    El personaje 4 estrellas es <strong>requerido</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>4 estrellas(3)</mat-label>
+                <mat-select [formControl]="bannerFourStarThreeFormControl" [compareWith]="compareCharacterBanner" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of fourStars" [value]="type">
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bannerFourStarThreeFormControl.hasError('required')">
+                    El personaje 4 estrellas es <strong>requerido</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <div class="image-upload-container">
+            <label for="set-image" class="upload-label">
+                Seleccionar Imagen del banner (.png)
+            </label>
+            <input 
+                type="file" 
+                id="set-image" 
+                (change)="onFileSelected($event)" 
+                accept="image/png" 
+                style="display: none;">
+
+            <div *ngIf="imageBase64" class="image-preview">
+                <img [src]="imageBase64" alt="Previsualización del banner" class="preview-img">
+            </div>
+        </div>
+
+        <div class="button-container">
+            <div *ngIf="updateButton">
+                <button (click)="updateCharacterBanner()">Editar</button>
+            </div>
+
+            <div *ngIf="!updateButton">
+                <button (click)="addCharacterBanner()">Agregar</button>
+            </div>
+
+            <button (click)="cancel()">Cancelar</button>
+        </div>
+        <br><br>
+        <a (click)="redirectToTableCharacterBanner()">Historial de banners de personajes</a>
+    </form>
+</div>

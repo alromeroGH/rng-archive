@@ -129,7 +129,7 @@ hr {
   margin-bottom: 15px;
 }
 
-.input {
+.input, mat-label {
   color: var(--color-input-placeholder);
 }
 
@@ -191,7 +191,7 @@ mat-error {
   background-color: var(--color-primary-secondary-color);
   color: var(--color-text-white);
   padding: 10px 15px;
-  margin-left: 55px;
+  width: 93%;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s;

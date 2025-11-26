@@ -59,7 +59,7 @@ export class ManageArtifactComponent implements OnInit {
       this.imageToUpdate = fileName;
 
       // shows the image
-      this.imageBase64 = artifactSetToUpdate?.image      
+      this.imageBase64 = artifactSetToUpdate?.image;   
 
       this.updateData = artifactSetToUpdate;
       this.artifact.clearArtifactSetToUpdate();
@@ -144,7 +144,7 @@ export class ManageArtifactComponent implements OnInit {
   updateArtifactSet(): void {
     const artifactSetToUpdate = this.updateData;
     const credentials = this.setForm;
-    console.log(artifactSetToUpdate);
+    let imageToSend: string;
     
 
     if (!this.imageToUpdate) {
@@ -152,11 +152,17 @@ export class ManageArtifactComponent implements OnInit {
 
       return;
     }
+
+    if (this.imageBase64?.startsWith('data:image')) {
+        imageToSend = this.imageBase64;
+      } else {
+        imageToSend = this.imageToUpdate;
+      }
     
     if (credentials.valid && artifactSetToUpdate) {
       const artifactSet = {
         setName: String(this.nameSetFormControl.value),
-        setImage: String(this.imageToUpdate)
+        setImage: imageToSend
       };
 
       const artifactPieces = [

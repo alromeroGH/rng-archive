@@ -23,13 +23,6 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 export class ManageNewsComponent implements OnInit {
   URL_REGEX = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.\-~:/?#\[\]@!$&'()*+,;=]*)*\/?$/i;
 
-  compareNewsType = (option: NewsType, value: NewsType | null): boolean => {
-    if (!value || !option) {
-      return false;
-    }
-    return option.value === value.value;
-  };
-
   updateButton: boolean = false;
 
   updateData: NewsTable | null = null;
@@ -56,29 +49,29 @@ export class ManageNewsComponent implements OnInit {
 
   linkFormControl = new FormControl('', [Validators.pattern(this.URL_REGEX)]);
   
-    ngOnInit(): void {
-      const newsToUpdate = this.news.getNewsToUpdate();
+  ngOnInit(): void {
+    const newsToUpdate = this.news.getNewsToUpdate();
 
-      if (newsToUpdate) {
-        this.newsForm.patchValue(newsToUpdate);
+    if (newsToUpdate) {
+      this.newsForm.patchValue(newsToUpdate);
       
-        const selectedType = this.newsType.find(
-          type => type.value === newsToUpdate.newsType.toLowerCase()
-        );
+      const selectedType = this.newsType.find(
+        type => type.value === newsToUpdate.newsType.toLowerCase()
+      );
 
-        if (selectedType) {
-          this.newsTypeFormControl.setValue(selectedType);
-        }
+      if (selectedType) {
+        this.newsTypeFormControl.setValue(selectedType);
+      }
 
         this.updateData = newsToUpdate;
       
         this.news.clearNewsToUpdate();
 
         this.updateButton = true;
-      } else {
-        this.updateButton = false;
-      }
+    } else {
+      this.updateButton = false;
     }
+  }
 
   constructor(private news: NewsService,
     private router: Router,
@@ -150,6 +143,13 @@ export class ManageNewsComponent implements OnInit {
   redirectToTableNews(): void {
     this.router.navigate(['/table-news']);
   }
+
+  compareNewsType = (option: NewsType, value: NewsType | null): boolean => {
+    if (!value || !option) {
+      return false;
+    }
+    return option.value === value.value;
+  };
 
   private openSnackBar(message: string, action: string = 'Cerrar', duration: number = 3000): void {
     this.snackBar.open(message, action, {
