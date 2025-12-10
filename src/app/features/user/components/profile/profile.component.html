@@ -1,1 +1,64 @@
-<p>profile works!</p>
+ <div class="container">
+    <h1>Perfil</h1>
+    
+    <hr>
+    
+    <form class="form">
+        <img src="../../../../../assets/images/avatar.png" alt="user logo">
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Usuario</mat-label>
+            <input type="text" matInput [formControl]="userFormControl">
+
+            <mat-error *ngIf="userFormControl.hasError('required')">
+                El usuario es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="userFormControl.hasError('minlength')">
+                El usuario debe tener mínimo 4 caracteres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+    
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Ingresar un mail válido
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+            El email es <strong>requerido</strong>
+        </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label class="input">UID</mat-label>
+            <input type="text" matInput [formControl]="uidFormControl">
+
+            <mat-error *ngIf="uidFormControl.hasError('required')">
+                El UID es <strong>requerido</strong>
+            </mat-error>
+
+            <mat-error *ngIf="uidFormControl.hasError('maxlength')">
+                El UID no puede tener más de 9 caracteres
+            </mat-error>
+
+            <mat-error *ngIf="uidFormControl.hasError('pattern')">
+                El UID solo contiene números
+            </mat-error>
+        </mat-form-field>
+
+         <div class="button-container">
+            <div class="buttons" *ngIf="updateProfile">
+                <button (click)="modifyProfile()">Editar</button>
+                <button (click)="ngOnInit()">Cancelar</button>
+            </div>
+
+            <div class="buttons" *ngIf="!updateProfile">
+                <button (click)="enableInputs()">Modificar perfil</button>
+                <button routerLink="/modify-password">Modificar contraseña</button>
+            </div>
+
+        </div>
+    </form>
+</div>

@@ -168,6 +168,26 @@ export class ManageWeaponBannerComponent implements OnInit {
     const credentials = this.weaponBannerForm;
     let imageToSend;
 
+    const fourStarsSet = new Set([
+      this.bannerFourStarOneFormControl.value?.id,
+      this.bannerFourStarTwoFormControl.value?.id,
+      this.bannerFourStarThreeFormControl.value?.id,
+      this.bannerFourStarFourFormControl.value?.id,
+      this.bannerFourStarFiveFormControl.value?.id
+    ]);
+
+    if (this.bannerFiveStarOneFormControl.value?.id === this.bannerFiveStarTwoFormControl.value?.id) {
+      this.openSnackBar('personajes 5 estrellas repetidos', 'Aceptar');
+
+      return;
+    }
+
+    if (fourStarsSet.size !== 5) {
+      this.openSnackBar('personajes 4 estrellas repetidos', 'Aceptar');
+
+      return;
+    }
+
     if (!this.imageToUpdate) {
       this.openSnackBar('La imagen es obligatoria', 'Aceptar');
 

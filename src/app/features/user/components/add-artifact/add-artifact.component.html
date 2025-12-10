@@ -1,1 +1,134 @@
-<p>add-artifact works!</p>
+<div class="container">
+    <div *ngIf="updateButton">
+        <h1>Editar artefacto</h1>
+    </div>
+
+    <div *ngIf="!updateButton">
+        <h1>Artefacto</h1>
+    </div>
+
+    <hr>
+
+    <form class="form">
+        <mat-form-field>
+            <mat-label>Set de artefacto</mat-label>
+                <mat-select 
+                [formControl]="setFormControl" 
+                [compareWith]="compareSet" 
+                required
+                (selectionChange)="getPieces($event.value).subscribe()">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of set" [value]="type">
+                        <div>
+                            {{type.setName}}
+                            <img class="set-image" src={{type.setImage}} alt="Set image">
+                        </div>
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="setFormControl.hasError('required')">
+                    El set de artefacto es <strong>requerido</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Pieza de artefacto</mat-label>
+                <mat-select 
+                [formControl]="pieceFormControl" 
+                [compareWith]="comparePiece" 
+                required
+                (selectionChange)="getMainStats($event.value).subscribe()">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of piece" [value]="type">
+                        {{type.pieceName}} ({{ type.pieceType }})
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="pieceFormControl.hasError('required')">
+                    La pieza de artefacto es <strong>requerida</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Estadística principal</mat-label>
+                <mat-select 
+                [formControl]="mainStatFormControl" 
+                [compareWith]="compareStat" 
+                required
+                (selectionChange)="getSecondaryStats($event.value).subscribe()"
+                >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of mainStat" [value]="type">
+                        {{type.statName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="mainStatFormControl.hasError('required')">
+                    La estadística principal es <strong>requerida</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Estadística secundaria 1</mat-label>
+                <mat-select [formControl]="secondaryStatOneFormControl" [compareWith]="compareStat" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of secondaryStats" [value]="type">
+                        {{type.statName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondaryStatOneFormControl.hasError('required')">
+                    La estadística secundaria es <strong>requerida</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Estadística secundaria 2</mat-label>
+                <mat-select [formControl]="secondaryStatTwoFormControl" [compareWith]="compareStat" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of secondaryStats" [value]="type">
+                        {{type.statName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondaryStatTwoFormControl.hasError('required')">
+                    La estadística secundaria es <strong>requerida</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Estadística secundaria 3</mat-label>
+                <mat-select [formControl]="secondaryStatThreeFormControl" [compareWith]="compareStat" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of secondaryStats" [value]="type">
+                        {{type.statName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondaryStatThreeFormControl.hasError('required')">
+                    La estadística secundaria es <strong>requerida</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Estadística secundaria 4</mat-label>
+                <mat-select [formControl]="secondaryStatFourFormControl" [compareWith]="compareStat" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of secondaryStats" [value]="type">
+                        {{type.statName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="secondaryStatFourFormControl.hasError('required')">
+                    La estadística secundaria es <strong>requerida</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <div class="button-container">
+            <div *ngIf="updateButton">
+                <button (click)="updateUserArtifact()">Editar</button>
+            </div>
+
+            <div *ngIf="!updateButton">
+                <button (click)="addUserArtifact()">Agregar</button>
+            </div>
+
+            <button (click)="cancel()">Cancelar</button>
+        </div>
+        <br><br>
+        <a (click)="redirectToArtifactHistory()">Historial de artefactos</a>
+    </form>
+</div>

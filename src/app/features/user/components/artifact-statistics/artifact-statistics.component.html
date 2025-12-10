@@ -1,1 +1,99 @@
-<p>artifact-statistics works!</p>
+<div *ngIf="showForm" class="container">
+    <div>
+        <h1>Predicción de artefacto</h1>
+    </div>
+
+    <hr>
+
+    <form class="form">
+        <mat-form-field>
+            <mat-label>Set de artefacto</mat-label>
+                <mat-select 
+                [formControl]="setFormControl" 
+                required
+                (selectionChange)="getPieces($event.value).subscribe()"
+                >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of set" [value]="type">
+                        <div>
+                            {{type.setName}}
+                            <img class="set-image" src={{type.setImage}} alt="Set image">
+                        </div>
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="setFormControl.hasError('required')">
+                    El set de artefacto es <strong>requerido</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Pieza de artefacto</mat-label>
+                <mat-select 
+                [formControl]="pieceFormControl" 
+                (selectionChange)="getMainStats($event.value).subscribe()"
+                >
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of piece" [value]="type">
+                        {{type.pieceName}} ({{ type.pieceType }})
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="pieceFormControl.hasError('required')">
+                    La pieza de artefacto es <strong>requerida</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Estadística principal</mat-label>
+                <mat-select [formControl]="mainStatFormControl" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of mainStat" [value]="type">
+                        {{type.statName}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="mainStatFormControl.hasError('required')">
+                    La estadística principal es <strong>requerida</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <div class="button-container">
+            <div>
+                <button (click)="getArtifactStatistics()">Aceptar</button>
+            </div>
+
+            <button (click)="cancel()">Cancelar</button>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="!showForm">
+    <a (click)="showForm = true"><img class="back" src="../../../../../assets/images/flecha-izquierda.png" alt=""></a>
+
+    <br>
+
+    <div class="container">
+        <div>
+            <h1>Estadísticas</h1>
+        </div>
+
+        <hr>
+
+        <p>Artefactos de “{{ statisticsData?.setName }}” ingresados: {{ statisticsData?.totalSetArtifacts }}</p>
+        <p>“{{ statisticsData?.pieceType }}” del set ingresado: {{ statisticsData?.totalPieceArtifacts }}</p>
+    </div>
+
+    <br>
+
+     <div class="container">
+        <div>
+            <h1>Probabilidad</h1>
+        </div>
+
+        <hr>
+
+        <p>Probabilidad de obtener {{ statisticsData?.pieceType }} con {{ statisticsData?.mainStat }}</p>
+        <br>
+        <h1 class="percentage">{{ statisticsData?.probabilityPercentage?.toFixed(2) }}%</h1>
+    </div>
+
+    <br>
+</div>

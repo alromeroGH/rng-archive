@@ -19,6 +19,10 @@ import { TableArtifactsComponent } from './features/admin/components/manage-arti
 import { TableUnitComponent } from './features/admin/components/manage-unit/table-unit/table-unit.component';
 import { TableWeaponBannerComponent } from './features/admin/components/manage-weapon-banner/table-weapon-banner/table-weapon-banner.component';
 import { TableCharacterBannerComponent } from './features/admin/components/manage-character-banner/table-character-banner/table-character-banner.component';
+import { authGuard } from './core/guards/auth.guard';
+import { ModifyPasswordComponent } from './features/user/components/modify-password/modify-password.component';
+import { ArtifactHistoryComponent } from './features/user/components/artifact-history/artifact-history.component';
+import { PullHistoryComponent } from './features/user/components/pull-history/pull-history.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -28,27 +32,30 @@ const routes: Routes = [
 
   {path: 'home', component: HomeComponent},
 
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [authGuard], data: { roles: ['admin', 'user'] }},
+  {path: 'modify-password', component: ModifyPasswordComponent, canActivate: [authGuard], data: { roles: ['admin', 'user'] }},
 
-  {path: 'add-artifact', component: AddArtifactComponent},
-  {path: 'artifact-statistics', component: ArtifactStatisticsComponent},
+  {path: 'add-artifact', component: AddArtifactComponent, canActivate: [authGuard], data: { roles: ['admin', 'user'] }},
+  {path: 'history-artifact', component: ArtifactHistoryComponent, canActivate: [authGuard], data: { roles: ['admin', 'user'] }},
+  {path: 'artifact-statistics', component: ArtifactStatisticsComponent, canActivate: [authGuard], data: { roles: ['admin', 'user'] }},
 
-  {path: 'add-pull', component: AddPullComponent},
-  {path: 'pull-statistics', component: PullStatisticsComponent},
+  {path: 'add-pull', component: AddPullComponent, canActivate: [authGuard], data: { roles: ['admin', 'user'] }},
+  {path: 'history-pull', component: PullHistoryComponent, canActivate: [authGuard], data: { roles: ['admin', 'user'] }},
+  {path: 'pull-statistics', component: PullStatisticsComponent, canActivate: [authGuard], data: { roles: ['admin', 'user'] }},
 
   {path: 'simulator', component: SimulatorComponent},
 
-  {path: 'manage-news', component: ManageNewsComponent},
-  {path: 'manage-artifact', component: ManageArtifactComponent},
-  {path: 'manage-unit', component: ManageUnitComponent},
-  {path: 'manage-weapon-banner', component: ManageWeaponBannerComponent},
-  {path: 'manage-character-banner', component: ManageCharacterBannerComponent},
+  {path: 'manage-news', component: ManageNewsComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
+  {path: 'manage-artifact', component: ManageArtifactComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
+  {path: 'manage-unit', component: ManageUnitComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
+  {path: 'manage-weapon-banner', component: ManageWeaponBannerComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
+  {path: 'manage-character-banner', component: ManageCharacterBannerComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
 
-  {path: 'table-news', component: TableNewsComponent},
-  {path: 'table-artifact', component: TableArtifactsComponent},
-  {path: 'table-unit', component: TableUnitComponent},
-  {path: 'table-weapon-banner', component: TableWeaponBannerComponent},
-  {path: 'table-character-banner', component: TableCharacterBannerComponent}
+  {path: 'table-news', component: TableNewsComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
+  {path: 'table-artifact', component: TableArtifactsComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
+  {path: 'table-unit', component: TableUnitComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
+  {path: 'table-weapon-banner', component: TableWeaponBannerComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
+  {path: 'table-character-banner', component: TableCharacterBannerComponent, canActivate: [authGuard], data: { roles: ['admin'] }}
   
 ];
 
