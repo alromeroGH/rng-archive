@@ -14,8 +14,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   selector: 'app-manage-artifact',
   templateUrl: './manage-artifact.component.html',
   styleUrls: ['./manage-artifact.component.css'],
-    standalone: true,
-    imports: [FormsModule, MatFormFieldModule,
+  standalone: true,
+  imports: [FormsModule, MatFormFieldModule,
       MatInputModule, NgIf, ReactiveFormsModule, MatSnackBarModule]
 })
 export class ManageArtifactComponent implements OnInit {

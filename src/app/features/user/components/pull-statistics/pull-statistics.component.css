@@ -1,0 +1,16 @@
+.graphics-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.graphics-container .container {
+    max-width: 450px; 
+    
+    flex-grow: 1; 
+    flex-shrink: 1;
+    
+    min-width: 300px; 
+}

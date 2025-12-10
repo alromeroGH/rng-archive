@@ -1,1 +1,78 @@
-<p>pull-statistics works!</p>
+
+<div *ngIf="showForm" class="container">
+    <div>
+        <h1>Estadísticas de gachapón</h1>
+    </div>
+
+    <hr>
+
+    <form class="form">
+        <mat-form-field>
+            <mat-label>Tipo de banner</mat-label>
+                <mat-select [formControl]="bannerTypeFormControl" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of type" [value]="type">
+                        {{type.name}}    
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bannerTypeFormControl.hasError('required')">
+                    El tipo de banner es <strong>requerido</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <div class="button-container">
+            <div>
+                <button (click)="getPullStatistics()">Aceptar</button>
+            </div>
+
+            <button (click)="cancel()">Cancelar</button>
+        </div>
+    </form>
+    
+</div>
+
+<div *ngIf="!showForm">
+    <a (click)="showForm = true"><img class="back" src="../../../../../assets/images/flecha-izquierda.png" alt=""></a>
+
+    <br>
+
+    <div class="container">
+        <div>
+            <h1>Estadísticas</h1>
+        </div>
+
+        <hr>
+
+        <p>Total de tiradas en banner Promocional: {{ statisticsData?.totalPull }}</p>
+        <br>
+        <p>Cantidad de personajes 5 estrellas obtenidos: {{ statisticsData?.totalFiveUnit }}</p>
+        <br>
+        <p>Cantidad de personajes 5 estrellas promocionales obtenidos: {{ statisticsData?.totalLimitedUnit }}</p>
+    </div>
+
+    <br><br><br>
+
+    <div class="graphics-container">
+        <div class="container">
+        <div>
+            <h1>50/50</h1>
+        </div>
+
+        <hr>
+
+        <canvas id="fiftyFiftyChart" #fiftyFiftyCanvas>{{ fiftyFiftyChart }}</canvas>
+    </div>
+
+    <br>
+
+     <div class="container">
+        <div>
+            <h1>Capturing radiance</h1>
+        </div>
+
+        <hr>
+
+        <canvas id="capturingRadianceChart" #capturingRadianceCanvas>{{ capturingRadianceChart }}</canvas>
+    </div>
+    </div>
+</div>

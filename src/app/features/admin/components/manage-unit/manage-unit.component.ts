@@ -148,6 +148,8 @@ export class ManageUnitComponent implements OnInit {
       this.unit.addUnit(body).subscribe({
         next: (response) => {
           this.openSnackBar('Unidad agregada con éxito', 'Aceptar');
+
+          this.redirectToTableUnit();
         },
         error: (err) => {
           console.error(err);
@@ -258,7 +260,7 @@ export class ManageUnitComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-    private openSnackBar(message: string, action: string = 'Cerrar', duration: number = 3000): void {
+  private openSnackBar(message: string, action: string = 'Cerrar', duration: number = 3000): void {
     this.snackBar.open(message, action, {
       duration: duration,
       horizontalPosition: 'center',

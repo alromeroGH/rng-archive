@@ -1,1 +1,64 @@
-<p>pull-history works!</p>
+<a (click)="redirectToAddPull()"><img class="back" src="../../../../../assets/images/flecha-izquierda.png" alt=""></a>
+<div class="table-container">
+    <h1>Tiradas agregadas</h1>
+
+    <hr>
+
+    <mat-form-field class="filter">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+
+    <mat-table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="type" class="mat-elevation-z8 ">
+            <th mat-header-cell *matHeaderCellDef> Tipo </th>
+            <td mat-cell *matCellDef="let element"> {{element.banner.bannerType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name" class="mat-column-type">
+            <th mat-header-cell *matHeaderCellDef> Nombre del banner </th>
+            <td mat-cell *matCellDef="let element"> 
+                <img class="banner-image" src="http://localhost:8080/images/images_banners/{{ element.banner.bannerImage }}" alt="banner image">
+                <br>
+                {{element.banner.bannerName}} 
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="unit">
+            <th mat-header-cell *matHeaderCellDef> Nombre de la unidad </th>
+            <td mat-cell *matCellDef="let element"> 
+                <img class="unit-image" src="{{ element.unit.unitImage }}" alt="Unit image">
+                {{element.unit.unitName}}
+             </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pullAmount">
+            <th mat-header-cell *matHeaderCellDef> Tirada n° </th>
+            <td mat-cell *matCellDef="let element"> {{element.pullsAmount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fiftyFifty">
+            <th mat-header-cell *matHeaderCellDef> 50/50 </th>
+            <td mat-cell *matCellDef="let element"> {{element.fiftyFifty}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="capturingRadiance">
+            <th mat-header-cell *matHeaderCellDef> Capturing radiance</th>
+            <td mat-cell *matCellDef="let element"> {{element.capturingRadiance}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modify">
+            <th mat-header-cell *matHeaderCellDef> Modificar </th>
+            <td mat-cell *matCellDef="let element"> <img (click)="updatePull(element)" class="img-table" src="../../../../../assets/images/editar.png" alt="edit"> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element"> <img (click)="deletePull(element.id)" class="img-table" src="../../../../../assets/images/basura.png" alt="delete"> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </mat-table>
+</div>

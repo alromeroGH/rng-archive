@@ -1,1 +1,53 @@
-<p>home works!</p>
+<div *ngIf="!logged">
+    <h2>Hola!</h2>
+    <p>Para acceder a la información de RNG Archive, 
+        debes ingresar a tu cuenta o crear una en caso de que no tengas una.</p>
+
+    <p>También puedes utilizar el simulador sin necesidad 
+        de iniciar sesión:  <a routerLink="/simulator">Simulador</a></p>
+</div>
+
+<div *ngIf="logged">
+    <div class="container">
+    <h1>Noticias</h1>
+    
+    <a (click)="filter()"><img src="../../../../assets/images/filtrar.png" alt="filter img"></a>
+
+    <div *ngIf="showFiler">
+        <div class="filter-controls">
+        <select id="filterType" [(ngModel)]="filterType">
+            <option value="">Tipo</option>
+            <option *ngFor="let type of newsTypes" [value]="type">{{ type | titlecase }}</option>
+        </select>
+        
+        <input type="date" id="filterDate" [(ngModel)]="filterDate">
+    </div>
+    </div>
+    <hr>
+
+    <div *ngFor="let info of filteredNews">
+        <div [ngClass]="{
+                    'event-container': info.newsType.toLowerCase() === 'event',
+                    'code-container': info.newsType.toLowerCase() === 'code',
+                    'banner-container': info.newsType.toLowerCase() === 'banner'
+                }">
+            <div class="header-card">
+                <p [ngClass]="{
+                    'event': info.newsType.toLowerCase() === 'event',
+                    'code': info.newsType.toLowerCase() === 'code',
+                    'banner': info.newsType.toLowerCase() === 'banner'
+                }">{{ info.newsType.toLowerCase() }}</p>
+                <p>{{ info.date | date:'dd/MM/yyyy' }}</p>
+            </div>
+            <hr>
+            <h2>{{ info.title }}</h2>
+            <p class="description">{{ info.description }}</p>
+            <hr>
+            <a *ngIf="info.link" href="{{ info.link }}">
+                <img src="../../../../assets/images/enlace-roto.png" alt="link img"> 
+                Enlace
+            </a>
+        </div>
+    </div>
+</div>
+</div>

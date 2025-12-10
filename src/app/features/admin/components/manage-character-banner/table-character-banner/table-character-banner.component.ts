@@ -34,7 +34,6 @@ export class TableCharacterBannerComponent {
         this.CHARACTER_BANNER_DATA = [];
         for (let i = 0; i < response.length; i++) {
           const rawItem = response[i];
-          
           this.CHARACTER_BANNER_DATA.push({
             id: Number(rawItem.id),
             characterBannerName: String(rawItem.bannerName),
@@ -62,6 +61,7 @@ export class TableCharacterBannerComponent {
             bannerImage: String(rawItem.bannerImage)
           });          
         }
+
 
         this.dataSource = new MatTableDataSource(this.CHARACTER_BANNER_DATA);
         

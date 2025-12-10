@@ -1,3 +1,4 @@
+<a (click)="redirectToManageUnit()"><img class="back" src="../../../../../assets/images/flecha-izquierda.png" alt=""></a>
 <div class="table-container">
     <h1>Unidades agregadas</h1>
 
@@ -50,8 +51,4 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </mat-table>
-
-    <br><br>
-    
-    <a (click)="redirectToManageUnit()">Volver</a>
 </div>

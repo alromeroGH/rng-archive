@@ -1,1 +1,59 @@
-<p>artifact-history works!</p>
+<a (click)="redirectToAddArtifact()"><img class="back" src="../../../../../assets/images/flecha-izquierda.png" alt=""></a>
+<div class="table-container">
+    <h1>Artefactos agregados</h1>
+
+    <hr>
+
+    <mat-form-field class="filter">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+
+    <mat-table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="set" class="mat-elevation-z8 ">
+            <th mat-header-cell *matHeaderCellDef> Set </th>
+            <td mat-cell *matCellDef="let element"> 
+                <img class="set-img" src="{{element.set.setImage}}" alt="artifact image">
+                <br>
+                {{element.set.setName}} 
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="piece" class="mat-column-type">
+            <th mat-header-cell *matHeaderCellDef> Pieza </th>
+            <td mat-cell *matCellDef="let element"> {{element.piece.pieceName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mainStat">
+            <th mat-header-cell *matHeaderCellDef> Estadística principal </th>
+            <td mat-cell *matCellDef="let element"> {{element.mainStat.statName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="secondaryStats">
+            <th mat-header-cell *matHeaderCellDef> Estadísticas secundarias </th>
+            <td mat-cell *matCellDef="let element"> 
+                - {{element.secondaryStats[0].statName}}
+                <br>
+                - {{element.secondaryStats[1].statName}}
+                <br>
+                - {{element.secondaryStats[2].statName}}  
+                <br>
+                {{element.secondaryStats[3].statName !== ''? '- ' + element.secondaryStats[3].statName : ''}}  
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="modify">
+            <th mat-header-cell *matHeaderCellDef> Modificar </th>
+            <td mat-cell *matCellDef="let element"> <img (click)="updateUserArtifacts(element)" class="img-table" src="../../../../../assets/images/editar.png" alt="edit"> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element"> <img (click)="deleteUserArtifacts(element.id)" class="img-table" src="../../../../../assets/images/basura.png" alt="delete"> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </mat-table>
+</div>
