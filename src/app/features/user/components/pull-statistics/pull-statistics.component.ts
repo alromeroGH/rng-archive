@@ -1,16 +1,16 @@
-import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Chart, ChartType } from 'chart.js/auto';
 import { PullStatisticsData } from 'src/app/core/interfaces/pull-statistics';
 import { BannerType } from 'src/app/core/interfaces/banner-type';
 import { StatisticsService } from 'src/app/core/services/statistics.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { Chart, ChartType } from 'chart.js/auto';
+
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pull-statistics',
