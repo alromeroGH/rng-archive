@@ -1,1 +1,138 @@
-<p>simulator works!</p>
+
+<div *ngIf="showForm" class="container">
+    <div>
+        <h1>Banner de simulación</h1>
+    </div>
+
+    <hr>
+
+    <form class="form">
+        <mat-form-field>
+            <mat-label>Tipo de banner</mat-label>
+                <mat-select 
+                [formControl]="bannerTypeFormControl"
+                required
+                (selectionChange)="getBanner($event.value).subscribe()">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let type of type" [value]="type">
+                        {{type.name}}    
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="bannerTypeFormControl.hasError('required')">
+                    El tipo de banner es <strong>requerido</strong>
+                </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Banner</mat-label>
+            <mat-select 
+            [formControl]="bannerFormControl"
+            (selectionChange)="getWeapon($event)"
+            required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let type of banner" [value]="type">
+                    <img class="img-banner" src="{{ type.bannerImage }}" alt="Banner image">
+                    {{type.bannerName}} - {{ type.bannerVersion }} fase {{ type.bannerPhase === 'ONE'? '1': '2' }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="bannerFormControl.hasError('required')">
+                El banner es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="bannerType === 'weapon'">
+            <mat-label>Arma seleccionada</mat-label>
+            <mat-select [formControl]="weaponFormControl" required>
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let type of weapons" [value]="type">
+                    <img class="unit-image" src="{{ type.unitImage }}" alt="unit image">
+                    {{type.unitName}} 
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="weaponFormControl.hasError('required')">
+                El arma es <strong>requerida</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <div class="button-container">
+            <div>
+                <button (click)="showSimulator()">Aceptar</button>
+            </div>
+
+            <button (click)="cancel()">Cancelar</button>
+        </div>
+    </form>
+    
+</div>
+
+<div *ngIf="!showForm">
+    <a (click)="showForm = true"><img class="back" src="../../../../../assets/images/flecha-izquierda.png" alt=""></a>
+
+    <br>
+
+    <div class="simulator-container">
+        <div>
+            <h1>Simulador</h1>
+        </div>
+
+        <hr>
+
+        <img src="{{bannerFormControl.value?.bannerImage}}" alt="Banner image">
+        
+        <br><br>
+
+        <div class="button-container">
+           <div>
+               <button (click)="getSimulator(1)">1 tirada</button>
+           </div>
+           <button (click)="getSimulator(10)">10 tiradas</button>
+        </div>  
+
+        <div class="units-container">
+            <div *ngFor="let unit of units " class="unit-container">
+            <img class="unit-image" src="{{ unit.unitImage }}" alt="Unit image">
+            <div>
+                <p>{{ unit.unitName }}</p>
+
+                <p [ngSwitch]="unit.numberOfStars" class="stars">
+                <span *ngSwitchCase="'THREE_STARS'">⭐⭐⭐</span>
+                <span *ngSwitchCase="'FOUR_STARS'">⭐⭐⭐⭐</span>
+                <span *ngSwitchCase="'FIVE_STARS'">⭐⭐⭐⭐⭐</span>
+                </p>
+            </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <mat-table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="pityCount">
+                    <th mat-header-cell *matHeaderCellDef> Pity n° </th>
+                    <td mat-cell *matCellDef="let element"> {{element.pityCount}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="primoCount">
+                    <th mat-header-cell *matHeaderCellDef> Protegemas utilizadas </th>
+                    <td mat-cell *matCellDef="let element"> {{element.primoCount}} </td>
+                </ng-container>
+
+                <ng-container *ngIf="bannerType === 'weapon'"  matColumnDef="divinePathCount">
+                    <th mat-header-cell *matHeaderCellDef> Senda divina </th>
+                    <td mat-cell *matCellDef="let element"> {{element.divinePathCount}} </td>
+                </ng-container>
+
+                <ng-container *ngIf="bannerType !== 'weapon'"  matColumnDef="winFiftyFiftyCount">
+                    <th mat-header-cell *matHeaderCellDef> 50/50 ganados </th>
+                    <td mat-cell *matCellDef="let element"> {{element.winFiftyFiftyCount}} </td>
+                </ng-container>
+
+                <ng-container *ngIf="bannerType !== 'weapon'" matColumnDef="winCapturingRadianceCount">
+                    <th mat-header-cell *matHeaderCellDef> Capturing radiance ganados </th>
+                    <td mat-cell *matCellDef="let element"> {{element.winCapturingRadianceCount}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </mat-table>
+        </div>
+    </div>
+</div>

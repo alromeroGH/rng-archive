@@ -16,13 +16,15 @@
             <td mat-cell *matCellDef="let element"> 
                 <img class="set-img" src="{{element.set.setImage}}" alt="artifact image">
                 <br>
-                {{element.set.setName}} 
+                {{element.set.setName}}
             </td>
         </ng-container>
 
         <ng-container matColumnDef="piece" class="mat-column-type">
             <th mat-header-cell *matHeaderCellDef> Pieza </th>
-            <td mat-cell *matCellDef="let element"> {{element.piece.pieceName}} </td>
+            <td mat-cell *matCellDef="let element"> 
+                {{element.piece.pieceName}}  ({{ element.piece.pieceType }})
+             </td>
         </ng-container>
 
         <ng-container matColumnDef="mainStat">
